@@ -1,0 +1,42 @@
+Infrstructura as Code 
+
+Router>en 
+Router#config t
+// Se le asigna un nombre al router en este caso R1
+Router(config)#hostname R1
+//Se le asigna un contrasenia en este caso "cisco"
+R1(config)#password cisco
+//Se entra a line colsol
+R1(config)#line colsol 0
+// Se le asigna un contrasenia "Class"
+R1(config-line)#password class
+R1(config-line)#login
+//Se Sale de line colsol
+R1(config-line)#exit
+//Se encryptan todas las contrasenias 
+R1(config)#servide password-encryption
+//Se le agrega un comentario 
+R1(config)#banner mot #
+**********************************************
+*        Acceso no autorizado prohibido       *
+*    Solo personal autorizado puede acceder   *
+**********************************************
+#
+//Se entra a la intefraz
+R1(config)#interface GigabitEthernet0/0
+//Se le agrega un ip una sub mask
+R1(config-if)#ip address 192.168.1.1 255.255.255.0
+//Se enciende la interfaz
+R1(config-if)#no shutdown
+//Se Sale de la interfaz
+R1(config-if)#exit
+//Se entra a la otra interfaz
+R1(config)#interface GigabitEthernet0/1
+//Se le agrega una ip y una submask
+R1(config-if)#ip address 10.0.0.1 255.255.255.0
+//Se prende la interfaz
+R1(config-if)#no shutdown
+//Se le sale de la interfaz
+R1(config-if)#exit
+//Se guarda la configuracion
+R1(config)#do wr
